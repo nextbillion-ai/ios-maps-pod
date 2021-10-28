@@ -11,8 +11,15 @@ NGL_EXPORT
 
 @interface NBAPIClient : NSObject
 
-- (void) enqueueGetDirections;
+- (void) buildParams: (NSString *) key value: (NSString *) value components:(NSMutableArray*) components;
+
 - (void) getDirections:(const CLLocationCoordinate2D *) coords handler: (void(^)(NBDirectionResponse *)) handler;
+- (void) getDirections:(const CLLocationCoordinate2D *) coords waypoints: (NSString*) waypoints handler: (void(^)(NBDirectionResponse *)) handler;
+- (void) getDirections:(const CLLocationCoordinate2D *) coords waypoints: (NSString*) waypoints steps:(bool) steps alternatives: (bool)alternatives  altcount:(int) altcount  debug:(bool) debug handler: (void(^)(NBDirectionResponse *)) handler;
+- (void) getDirections:(const CLLocationCoordinate2D *) coords waypointCoords: (CLLocationCoordinate2D *) waypoints waypointCount: (int) waypointCount handler: (void(^)(NBDirectionResponse *)) handler;
+- (void) getDirections:(const CLLocationCoordinate2D *) coords waypointCoords: (CLLocationCoordinate2D*) waypoints waypointCount: (int) waypointCount steps:(bool) steps alternatives: (bool)alternatives  altcount:(int) altcount  debug:(bool) debug handler: (void(^)(NBDirectionResponse *)) handler;
+
+
 - (void) getMatrix:(NSArray *) origins destinations: (NSArray *) destinations handler: (void(^)(DistanceMatrixResponse *)) handler;
 - (void) getMatching:(NSArray *) path handler:(void(^)(SnapToRoadResponse *)) handler;
 
